@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>내 프로필 - Codedex</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #1e1e2f;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      color: #ffcc00;
+    }
+    .profile-box {
+      background-color: #2e2e40;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .profile-item {
+      margin: 0.8rem 0;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.2rem;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: none;
+      background-color: #444;
+      color: #fff;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #00c896;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body onload="loadProfile()">
+  <div class="container">
+    <h1>내 프로필</h1>
+    <div class="profile-box">
+      <div class="profile-item">
+        <label for="nickname">닉네임</label>
+        <input type="text" id="nickname" />
+      </div>
+      <div class="profile-item">
+        <label for="title">타이틀</label>
+        <input type="text" id="title" />
+      </div>
+      <div class="profile-item">
+        <label for="goal">나의 학습 목표</label>
+        <input type="text" id="goal" />
+      </div>
+      <div class="profile-item">
+        <label for="algo">알고리즘 챕터 진행도</label>
+        <input type="number" id="algo" min="0" max="10" />
+      </div>
+      <div class="profile-item">
+        <label for="ai">AI 챕터 진행도</label>
+        <input type="number" id="ai" min="0" max="8" />
+      </div>
+      <div class="profile-item">
+        <label for="math">수학 챕터 진행도</label>
+        <input type="number" id="math" min="0" max="12" />
+      </div>
+      <button onclick="saveProfile()">저장하기</button>
+    </div>
+  </div>
+
+  <script>
+    function saveProfile() {
+      localStorage.setItem('profile_nickname', document.getElementById('nickname').value);
+      localStorage.setItem('profile_title', document.getElementById('title').value);
+      localStorage.setItem('profile_goal', document.getElementById('goal').value);
+      localStorage.setItem('chapter_algo', document.getElementById('algo').value);
+      localStorage.setItem('chapter_ai', document.getElementById('ai').value);
+      localStorage.setItem('chapter_math', document.getElementById('math').value);
+      alert('프로필과 챕터 정보가 저장되었습니다!');
+    }
+
+    function loadProfile() {
+      document.getElementById('nickname').value = localStorage.getItem('profile_nickname') || '';
+      document.getElementById('title').value = localStorage.getItem('profile_title') || '';
+      document.getElementById('goal').value = localStorage.getItem('profile_goal') || '';
+      document.getElementById('algo').value = localStorage.getItem('chapter_algo') || 0;
+      document.getElementById('ai').value = localStorage.getItem('chapter_ai') || 0;
+      document.getElementById('math').value = localStorage.getItem('chapter_math') || 0;
+    }
+  </script>
+</body>
+</html>
